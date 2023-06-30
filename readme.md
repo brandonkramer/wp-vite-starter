@@ -1,6 +1,9 @@
 # WP ViteJS 4 starter kit
 
-[Vite](https://vitejs.dev) simple starter kit for WordPress plugin and theme development to make use of their lightweight, blazing fast and efficient development build tool. The "src" folder includes JS, PostCSS, images, fonts, SVG and a gutenberg block as examples.
+Vite simple starter kit for WordPress plugin and theme development to make use of their lightweight, blazing fast and efficient development build tool. The "src" folder includes JS, PostCSS, images, fonts, SVG and a gutenberg block as examples.
+
+You can read more about ViteJS on [vitejs.dev](https://vitejs.dev)
+
 ## Usage
 
 Install the packages and build our assets into the 'build' folder.
