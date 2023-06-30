@@ -1,5 +1,5 @@
 /**
- * JS for the faqs-block-editor
+ * JS for the example block
  */
 import blockMeta from './example-block.json';
 
