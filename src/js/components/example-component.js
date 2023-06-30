@@ -1,0 +1,1 @@
+console.log('I\'m a component that will be bundled with the main script.');

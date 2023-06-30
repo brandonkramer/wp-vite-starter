@@ -1,0 +1,19 @@
+vendor
+node_modules
+.phpdoc/cache
+composer.lock
+package-lock.json
+yarn.lock
+
+# Tests
+/tests/build/
+/tests/Data/
+/tests/Codeception/_data/dump.sql
+.phpunit.result.cache
+/wp
+/wp-content
+
+# Editor settings
+.vscode/settings.json
+.vscode/launch.json
+.idea/*

@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "my-custom-project/example-block",
+  "version": "0.1.0",
+  "title": "Example Block",
+  "description": "",
+  "category": "widgets",
+  "icon": "superhero-alt",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "content": {
+      "type": "string"
+    }
+  },
+  "styles": [
+    {
+      "name": "default",
+      "label": "Default",
+      "isDefault": true
+    },
+    {
+      "name": "border",
+      "label": "Border"
+    }
+  ],
+  "textdomain": "my-custom-project"
+}
