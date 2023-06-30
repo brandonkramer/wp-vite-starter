@@ -29,21 +29,21 @@ yarn start
 ```
 
 ## ViteJS Config
-The config is configured to use esbuild for minification and turns off minification + includes a sourcemap when using the "-dev" commands. It also includes the following:
+The config is configured to use esbuild for minification and turns off minification + includes a sourcemap when using the `-dev` commands. It also includes the following:
 - PostCSS configuration
-- Esbuild configuration to make ReactJS code work inside ".js" files instead of ".jsx"
+- Esbuild configuration to make ReactJS code work inside `.js` files instead of `.jsx`
 - Custom RollupJS plugin that collects images, SVG and font files and emits them and makes them transformable
 - Custom RollupJS plugin that encapsulates our JS bundles to prevent mix-up of global variables after minification
 - Custom ViteJS plugin that updates/refreshes the dev server (HMR) when a change is made inside PHP files
-- The Vite Image Optimizer plugin that optimizes images and SVG files that we emit
+- [Vite Plugin Image Optimizer](https://github.com/FatehAK/vite-plugin-image-optimizer) that optimizes images and SVG files that we emit
 
 ## PostCSS config
 
 The PostCSS config includes the following plugins
-- PostCSS import. 
-- PostCSS nested to unwrap nested rules similar to SASS.
-- Autoprefixer.
-- PostCSS combine duplicated selectors that detects and combines duplicated CSS selectors.
+- [PostCSS import](https://github.com/postcss/postcss-import) that can consume local files, node modules or web_modules using the `@import` rule.
+- [PostCSS nested](https://github.com/postcss/postcss-nested) to unwrap nested rules similar to SASS.
+- [Autoprefixer](https://github.com/postcss/autoprefixer) to parse CSS and add vendor prefixes to CSS rules using values from Can I Use.
+- [PostCSS combine duplicated selectors](https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors) that detects and combines duplicated CSS selectors.
 
 ## Other configurations
 The idea here is to keep it simple so additional things can be added for different projects. Note that some hooking and functions are needed to make the ViteJS dev server work with your local environment and to enqueue assets based on the manifest file.
