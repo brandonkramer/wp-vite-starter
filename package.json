@@ -1,5 +1,5 @@
 {
-  "name": "wp-vite-js-starer-kit",
+  "name": "wp-vite-js-starter-kit",
   "private": true,
   "scripts": {
     "start": "vite --config ./vite.config.js",
