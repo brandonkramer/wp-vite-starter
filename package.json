@@ -1,5 +1,5 @@
 {
-  "name": "wp-strap",
+  "name": "wp-vite-js-starer-kit",
   "private": true,
   "scripts": {
     "start": "APP_ENV=development vite --config ./vite.config.js",
