@@ -1,6 +1,7 @@
 /**
  * JS for the example block
  */
+import './example-block.pcss';
 import blockMeta from './example-block.json';
 
 const {registerBlockType} = wp.blocks; // Registers a new block.

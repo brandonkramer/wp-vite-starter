@@ -2,7 +2,7 @@
   "name": "wp-vite-js-starter-kit",
   "private": true,
   "scripts": {
-    "start": "vite --config ./vite.config.js -mode development",
+    "start": "vite --config ./vite.config.js",
     "build": "vite build --config ./vite.config.js --emptyOutDir ",
     "build-dev": "vite build --config ./vite.config.js --emptyOutDir --mode development",
     "watch": "vite build --watch --config ./vite.config.js",

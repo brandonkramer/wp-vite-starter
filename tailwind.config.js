@@ -8,8 +8,8 @@ module.exports = {
     content: [
         "./index.php",
         "./src/**/*.{js,ts,jsx,tsx}",
-        "./templates/**/*.{php}",
-        "./inc/**/*.{php}",
+        "./templates/**/*.php ",
+        "./inc/**/*.php",
     ],
 
     /**
