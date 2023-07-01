@@ -16,10 +16,18 @@ module.exports = {
         'postcss-import': {},
 
         /**
-         * PostCSS plugin to unwrap nested rules closer to Sass syntax.
-         * @see https://github.com/postcss/postcss-nested
+         * To add support for nested declarations, tailwindcss/nesting plugin is added, which is a PostCSS plugin
+         * that wraps postcss-nested or postcss-nesting and acts as a compatibility layer for Tailwind functions
+         * @ee https://tailwindcss.com/docs/using-with-preprocessors#nesting
          */
-        'postcss-nested': {},
+        'tailwindcss/nesting': {},
+
+        /**
+         * A utility-first CSS framework that scans all of our files, and only generate styles
+         * and classes that we use. It's fast, flexible, and reliable — with zero-runtime.
+         * @see https://tailwindcss.com/docs/installation
+         */
+        tailwindcss: { config: './tailwind.config.js' },
 
         /**
          * Plugin to parse CSS and add vendor prefixes to CSS rules using values from

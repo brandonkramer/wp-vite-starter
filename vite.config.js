@@ -13,14 +13,6 @@ export default defineConfig(({command, mode}, core = {
 
     /* Shared options */
     root: core.root,
-    server: {
-        host: '0.0.0.0',
-        port: 3000,
-        watch: {usePolling: true}
-    },
-    css: {
-        postcss: './postcss.config.js'
-    },
     esbuild: {
         loader: 'jsx',
         include: /\/src\/.*\.js$/,
@@ -30,6 +22,14 @@ export default defineConfig(({command, mode}, core = {
         esbuildOptions: {
             loader: {'.js': 'jsx'}
         },
+    },
+    server: {
+        host: '0.0.0.0',
+        port: 3000,
+        watch: {usePolling: true}
+    },
+    css: {
+        postcss: './postcss.config.js'
     },
 
     /* Build options */

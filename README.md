@@ -46,10 +46,14 @@ The config is configured to use esbuild for minification and turns off minificat
 ## PostCSS config
 
 The PostCSS config includes the following plugins
+- [TailwindCSS](https://tailwindcss.com/docs/installation) to add a utility-first CSS framework that scans all of our files, and only generate styles and classes that we use.
+- [TailwindCSS nesting](https://tailwindcss.com/docs/using-with-preprocessors#nesting) to unwrap nested rules similar to SASS.
 - [PostCSS import](https://github.com/postcss/postcss-import) that can consume local files, node modules or web_modules using the `@import` rule.
-- [PostCSS nested](https://github.com/postcss/postcss-nested) to unwrap nested rules similar to SASS.
 - [Autoprefixer](https://github.com/postcss/autoprefixer) to parse CSS and add vendor prefixes to CSS rules using values from Can I Use.
 - [PostCSS combine duplicated selectors](https://github.com/ChristianMurphy/postcss-combine-duplicated-selectors) that detects and combines duplicated CSS selectors.
+
+## TailwindCSS config
+TailwindCSS is added through the PostCSS config file. Currently only the paths are configured to find TailwindCSS classes for optimization.
 
 ## Other configurations
 The idea here is to keep it simple so additional things can be added for different projects. Note that some hooking and functions are needed to make the ViteJS dev server work with your local environment and to enqueue assets based on the manifest file.
