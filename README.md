@@ -81,7 +81,7 @@ WPStrap.rollupEncapsulateBundles({
 })
 ```
 - with the `root` and `outDir` config variables you're able to change the source and build folders, name them differently or change the paths.
-- Aside to `root` and `outDir` you can define and set an `entry` which will try to find asset files from this entry point in the `root` folder. For example if you set `root` to "src" and `entry` to "Static", you're able to maintain different bundles with a domain-specific folder structure for source files like so
+- Aside to `root` and `outDir` you can define and set an `entry` which will try to find asset files from this entry point in the `root` folder. For example if you set `root` to "src" and `entry` to "Static", you're able to maintain different bundles within different domain folders
 ```
 my-custom-plugin/
 ├── src/                  
@@ -104,6 +104,5 @@ my-custom-plugin/
 │   ├── css/             
 │   ├── js/              
 │   ├── images/          
-
 
 ```
