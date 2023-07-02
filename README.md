@@ -69,11 +69,20 @@ TailwindCSS is added through the PostCSS config file and is currently only confi
 
 ## Other configurations
 
-The idea here is to keep the starter kit simple so additional things can be added for different projects, and so it can be integrated into different theme and plugin structures/frameworks. The following things can also be configured:
+The idea here is to keep the starter kit simple so additional things can be added for different projects, and so it can be integrated into different theme and plugin structures. The following things can also be configured:
 
 
-- With the `WPStrap.rollUpCopyAssets` test rules you're able to add additional asset folders by adding additional test rules aside to images/svg/fonts, and you can customize the default ones as well
-- You can customize the way it encapsulates bundles by adding an object as the first parameter in the `WPStrap.rollupEncapsulateBundles` function like so
+- With the `WPStrap.rollUpCopyAssets` test rules param you're able to add additional asset folders by adding additional test rules aside to images/svg/fonts, and you can customize the default ones as well like so:
+```js
+WPStrap.rollUpCopyAssets(path.resolve(core.dirname, core.root), {
+    rules: {
+        images: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
+        svg: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
+        fonts: /ttf|woff|woff2/i
+    }
+})
+```
+- You can customize the way it encapsulates bundles by using the config in the first parameter of `WPStrap.rollupEncapsulateBundles` like so
 ```js
 WPStrap.rollupEncapsulateBundles({
     banner: '/*My Custom Project*/(function(){', // Adds a comment before each bundle

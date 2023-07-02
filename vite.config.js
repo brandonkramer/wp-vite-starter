@@ -25,13 +25,7 @@ export default defineConfig(({command, mode}, core = {
                         /* RollupJS plugins */
                         plugins: [
                             WPStrap.rollupEncapsulateBundles(),
-                            WPStrap.rollUpCopyAssets(path.resolve(core.dirname, core.root), {
-                                rules: {
-                                    images: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
-                                    svg: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
-                                    fonts: /ttf|woff|woff2/i
-                                }
-                            }),
+                            WPStrap.rollUpCopyAssets(path.resolve(core.dirname, core.root)),
                         ],
                     }
                 },
