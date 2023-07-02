@@ -67,7 +67,7 @@ TailwindCSS is added through the PostCSS config file and is currently only confi
 ## PHP functions
 ... reserved
 
-## Other ViteJS configurations
+## Other configurations
 
 The idea here is to keep the starter kit simple so additional things can be added for different projects, and so it can be integrated into different theme and plugin structures/frameworks. The following things can also be configured:
 
@@ -84,23 +84,23 @@ WPStrap.rollupEncapsulateBundles({
 - Aside to `root` and `outDir` you can define and set an `entry` which will try to find asset files from this entry point in the `root` folder. For example if you set `root` to "src" and `entry` to "Static", you're able to maintain different bundles with a domain-specific source folder structure like so
 ```
 my-custom-plugin/
-├── src/                
-│   ├── Blocks/            
+├── src/                  
+│   ├── Blocks/              // Contains all the source files for the blocks domain
 │   │    └── Static     
 │   │         ├── css/  
 │   │         ├── js/  
 │   │         └── images/  
-│   ├── Admin/             
+│   ├── Admin/                // Contains all the source files for the admin domain
 │   │    └── Static    
 │   │         ├── css/  
 │   │         ├── js/  
 │   │         └── images/  
-│   ├── Main/             
+│   ├── Main/                 // Contains all the source files for the main domain
 │   │    └── Static    
 │   │         ├── css/  
 │   │         ├── js/  
 │   │         └── images/  
-├── build/                  
+├── build/                    // Contains all bundled & processed files
 │   ├── css/             
 │   ├── js/              
 │   ├── images/          
