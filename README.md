@@ -4,7 +4,7 @@
   </a>
   <h1>WP ViteJS 4 starter kit</h1>
   <p>
-Vite simple starter kit for WordPress plugin and theme development to make use of their lightweight, blazing fast and efficient development build tool. The "src" folder includes JS, PostCSS, images, fonts, SVG and a gutenberg block as examples.
+Vite simple lightweight starter kit for WordPress plugin and theme development to make use of their blazing fast and efficient frontend build tool. The "src" folder includes JS, PostCSS, images, fonts, SVG and a gutenberg block as examples.
 
 You can read more about ViteJS on [vitejs.dev](https://vitejs.dev)
 </p>
@@ -18,7 +18,7 @@ yarn install
 yarn build
 ```
 
-This will build the assets in dev mode. You can use the 'isDev' variable inside the ViteJS config to use a different configuration.
+This will build the assets in dev mode. You can use the 'isDev' variable inside the ViteJS config to use different configurations.
 ```
 yarn build-dev
 ```
