@@ -37,7 +37,7 @@ yarn start
 ```
 
 ## ViteJS Config
-The config file is extending a base config from `@wp-strap/vite` package which is opinionated and configured for WordPress development. This is set up to keep
+The config is extending a base config from the `@wp-strap/vite` package which is opinionated and configured for WordPress development. This is set up to keep
 the config file minimal and consistent. The base configurations can all be overwritten. The config currently includes the following:
 
 - Esbuild for minification which is turned off with the `-dev` commands 
