@@ -85,22 +85,22 @@ WPStrap.rollupEncapsulateBundles({
 ```
 my-custom-plugin/
 ├── src/                  
-│   ├── Blocks/              // Contains all the source files for the blocks domain
+│   ├── Blocks/            
 │   │    └── Static     
 │   │         ├── css/  
 │   │         ├── js/  
 │   │         └── images/  
-│   ├── Admin/                // Contains all the source files for the admin domain
+│   ├── Admin/             
 │   │    └── Static    
 │   │         ├── css/  
 │   │         ├── js/  
 │   │         └── images/  
-│   ├── Main/                 // Contains all the source files for the main domain
+│   ├── Main/             
 │   │    └── Static    
 │   │         ├── css/  
 │   │         ├── js/  
 │   │         └── images/  
-├── build/                    // Contains all bundled & processed files
+├── build/                  
 │   ├── css/             
 │   ├── js/              
 │   ├── images/          
