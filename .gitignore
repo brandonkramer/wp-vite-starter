@@ -1,11 +1,16 @@
+# procssed files
+build/*
+
+# composer
 vendor
-node_modules
-.phpdoc/cache
 composer.lock
+
+# node
+node_modules
 package-lock.json
 yarn.lock
 
-# Tests
+# tests
 /tests/build/
 /tests/Data/
 /tests/Codeception/_data/dump.sql
@@ -13,7 +18,13 @@ yarn.lock
 /wp
 /wp-content
 
-# Editor settings
+# editor settings
 .vscode/settings.json
 .vscode/launch.json
 .idea/*
+
+# security stuff
+auth.json
+
+# misc
+.DS_Store

@@ -1,5 +1,5 @@
 {
-  "name": "wp-vite-js-starter-kit",
+  "name": "@wp-strap/wp-vite-starter",
   "private": true,
   "scripts": {
     "start": "vite --config ./vite.config.js",
@@ -9,7 +9,7 @@
     "watch-dev": "vite build --watch --config ./vite.config.js --mode development"
   },
   "devDependencies": {
-    "@wp-strap/vite": "0.3.4",
+    "@wp-strap/vite": "0.3.6",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "postcss-combine-duplicated-selectors": "^10.0.3",
