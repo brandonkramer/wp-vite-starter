@@ -12,9 +12,7 @@ You can read more about ViteJS on [vitejs.dev](https://vitejs.dev)
 
 ---
 
-The idea here is to keep the starter kit simple so additional things can be added for different projects, and so it can be integrated into different theme and plugin structures/frameworks.
-
-## Usages
+## Quick start
 
 Install the packages and build our assets into the 'build' folder.
 ```
@@ -70,6 +68,9 @@ TailwindCSS is added through the PostCSS config file and is currently only confi
 ... reserved
 
 ## Other ViteJS configurations
+
+The idea here is to keep the starter kit simple so additional things can be added for different projects, and so it can be integrated into different theme and plugin structures/frameworks. The following things can also be configured:
+
 
 - With the `WPStrap.rollUpCopyAssets` test rules you're able to add additional asset folders by adding additional test rules aside to images/svg/fonts, and you can customize the default ones as well
 - You can customize the way it encapsulates bundles by adding an object as the first parameter in the `WPStrap.rollupEncapsulateBundles` function like so
