@@ -47,11 +47,11 @@ the config file minimal and consistent throughout different projects. The base c
 - Esbuild for minification which is turned off with the `-dev` commands 
 - Esbuild sourcemaps are added when using the `-dev` commands
 - Esbuild is configured to make ReactJS code work inside `.js` files instead of `.jsx`
-- CSS entries are automatically made without importing them into JS files which is fitting for WordPress projects.
+- CSS entries are automatically made, bundled and compiled without importing them into JS files which is fitting for WordPress projects.
   - (this can be turned off by adding `cssEntries: false` to the core config)
-- Custom ViteJS plugin that updates/refreshes the dev server (HMR) when a change is made inside PHP files
-- Custom RollupJS plugin that encapsulates JS bundles to prevent mix-up of global variables after minification
-- Custom RollupJS plugin that collects images, SVG and font files from folders and emits them to make them transformable by plugins
+- Includes a custom ViteJS plugin that updates/refreshes the dev server (HMR) when a change is made inside PHP files
+- Includes a custom RollupJS plugin that encapsulates JS bundles to prevent mix-up of global variables after minification
+- Includes a custom RollupJS plugin that collects images, SVG and font files from folders and emits them to make them transformable by plugins
 - [Vite Plugin Image Optimizer](https://github.com/FatehAK/vite-plugin-image-optimizer) that optimizes images and SVG files that we emit
 
 ### PostCSS config
@@ -109,7 +109,7 @@ export default defineConfig(({command, mode}, core = {
     entry: 'Static', // <-----
 })=>({}));
 ```
-For example if you set `root` to "src" and `entry` to "Static" like the above, you're able to maintain different bundles within different domain folders:
+For example if you set `root` to "src" and `entry` to "Static" like the above, you're able to maintain different bundles within different domain folders and mix it up with PHP files:
 ```
 my-custom-plugin/
 ├── src/                  
