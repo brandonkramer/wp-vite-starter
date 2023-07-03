@@ -1,4 +1,3 @@
-import path from "path";
 import {defineConfig} from 'vite'
 import {ViteImageOptimizer} from 'vite-plugin-image-optimizer';
 import * as WPStrap from '@wp-strap/vite';
@@ -25,7 +24,7 @@ export default defineConfig(({command, mode}, core = {
                         /* RollupJS plugins */
                         plugins: [
                             WPStrap.rollupEncapsulateBundles(),
-                            WPStrap.rollUpCopyAssets(path.resolve(core.dirname, core.root)),
+                            WPStrap.rollUpCopyAssets(),
                         ],
                     }
                 },

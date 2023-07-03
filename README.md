@@ -113,18 +113,21 @@ For example if you set `root` to "src" and `entry` to "Static" like the above, y
 ```
 my-custom-plugin/
 ├── src/                  
-│   ├── Blocks/            
-│   │    └── Static     
+│   ├── Blocks/
+│   │    ├── Blocks.php
+│   │    └── Static/     
 │   │         ├── css/  
 │   │         ├── js/  
 │   │         └── images/  
 │   ├── Admin/             
-│   │    └── Static    
+│   │    ├── Admin.php
+│   │    └── Static/
 │   │         ├── css/  
 │   │         ├── js/  
 │   │         └── images/  
-│   ├── Main/             
-│   │    └── Static    
+│   ├── Main/        
+│   │    ├── Main.php     
+│   │    └── Static/
 │   │         ├── css/  
 │   │         ├── js/  
 │   │         └── images/  
