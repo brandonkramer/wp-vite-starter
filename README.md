@@ -126,6 +126,7 @@ add_action('wp_enqueue_scripts', function () {
 
 Example with using instances 
 ```php
+use WPStrap\Vite\Assets;
 use WPStrap\Vite\AssetsService;
 use WPStrap\Vite\DevServer;
 
@@ -151,6 +152,10 @@ $assets->css('main')
 $assets->image('bird-on-black.jpg') 
 $assets->svg('instagram') 
 $assets->font('SourceSerif4Variable-Italic.ttf.woff2')
+
+// You can also use the facade based on this instance.
+Assets::setFacade($assets);
+Assets::get('css/main.css');
 ```
 
 Example with using instances wih functions
@@ -184,21 +189,29 @@ add_action('wp_enqueue_scripts', function () {
 Example with using the League Container
 ```php
 use League\Container\Container;
+use WPStrap\Vite\Assets;
 use WPStrap\Vite\AssetsInterface;
 use WPStrap\Vite\AssetsService;
 use WPStrap\Vite\DevServer;
 use WPStrap\Vite\DevServerInterface;
 
 $container = new Container();
-$container->add(AssetsInterface::class)->setConcrete(AssetsService::class);
+$container->add(AssetsInterface::class)->setConcrete(AssetsService::class)->addMethodCall('register', [
+    'dir' => plugin_dir_path(__FILE__), 
+    'url' => plugins_url(\basename(__DIR__)) 
+]);
 $container->add(DevServerInterface::class)->setConcrete(DevServer::class)->addArgument(AssetsInterface::class);
 
 $assets = $container->get(AssetsInterface::class);
 $devServer = $container->get(DevServerInterface::class);
 
-$devServer->start()
+$devServer->start();
 
-$assets->get('main/main.css')
+$assets->get('main/main.css');
+
+// You can also set a PSR container as a facade accessor
+Assets::setFacade($container);
+Assets::get('main/main.css')
 ```
 
 ### DevServer
