@@ -201,8 +201,8 @@ $assets->get('main/main.css')
 
 The dev server class is responsible for listening to the ViteJS dev server using CURL, checking if it's running locally on port 3000 which you can adjust using the optional param from the start() method as seen above.
 
-If it can validate the dev server is running, it will inject viteJS scripts provided from the dev server, filter all asset urls (from the assets::get(), assets:css(), assets::js() methods)
-and load source files instead, and alter the script tags to make sure the source files can be loaded as modules for HMR.
+If it can validate the dev server is running, it will inject viteJS scripts provided from the dev server, filter all asset urls and load source files instead (from the assets::get(), assets:css(), assets::js() methods), 
+and alter the script tags to make sure the source files can be loaded as modules for HMR.
 
 **This should only be run on local/dev environments.** As it's using CURL on each request, so you don't want to run this on production.
 
