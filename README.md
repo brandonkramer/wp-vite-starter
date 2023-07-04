@@ -78,9 +78,9 @@ TailwindCSS is added through the PostCSS config file and is currently only confi
 [Read here](https://tailwindcss.com/docs/configuration) more about all the cool stuff you can configure with Tailwind.
 
 ### PHP / Composer
-Composer includes the `wp-strap/vite` package that exposes some classes which are responsible for generating asset URLs from the manifest.json that you can register or enqueue and enabling HMR when the ViteJS dev server is running.
+Composer includes the `wp-strap/vite` package that exposes some classes which are responsible for generating asset URLs from the manifest.json that you can register or enqueue. It's also responsible for enabling HMR when the ViteJS dev server is running.
 
-The classes follow PSR practices with interfaces, so it can be included trough OOP with dependency injection and IoC containers. It also provides a Facade class that allows you to use static methods instead to call it everywhere you like if that's your jam.
+The classes follow PSR practices with interfaces, so it can be included trough OOP with dependency injection and IoC containers. It also provides a Facade class that allows you to use static methods instead to call the methods everywhere you like, if that's your jam.
 
 
 Example with using the facade:
@@ -197,16 +197,18 @@ $devServer->start()
 $assets->get('main/main.css')
 ```
 
+### DevServer
 
-Starts listening to check if the ViteJS dev server is running locally on port 3000
-If yes, it will include viteJS scripts from the dev server and will filter all asset urls
-to load the source files instead for HMR. This should only be run on local/dev environments.
+`Assets::devServer()->start(3000');` OR `(new DevServer($assets))->start('3000');`
 
-`Assets::devServer()->start();`
+The dev server class is responsible for listening to the ViteJS dev server using CURL, checking if it's running locally on port 3000 which you can adjust using the optional param from the start() method as seen above.
 
-OR
+If it can validate the dev server is running, it will inject viteJS scripts provided from the dev server, filter all asset urls (from the assets::get(), assets:css(), assets::js() methods)
+and load source files instead, and alter the script tags to make sure the source files can be loaded as modules for HMR.
 
-`(new DevServer($assets))->start();`
+**This should only be run on local/dev environments.** As it's using CURL on each request, so you don't want to run this on production.
+
+
 
 
 ## 💻 Other configurations
@@ -287,4 +289,20 @@ my-custom-plugin/
 │   ├── js/              
 │   ├── images/          
 
+```
+when using this approach you can use the PHP asset functions a bit differently:
+```php
+// When you use the get method you need to call the whole path
+Assets::get('Main/Static/js/main.js')
+
+// When using these methods you are able to use the first param to point to the domain and second param to point o the file.
+Assets::js('Blocks', 'example-block')
+Assets::css('Main', 'main')
+Assets::image('Admin', 'bird-on-black.jpg')
+Assets::svg('Main', 'instagram')
+
+$assets->js('Blocks', 'example-block')
+$assets->css('Main', 'main')
+$assets->image('Admin', 'bird-on-black.jpg')
+$assets->svg('Main', 'instagram')
 ```
