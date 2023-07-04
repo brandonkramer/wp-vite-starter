@@ -16,6 +16,7 @@ You can read more about ViteJS on [vitejs.dev](https://vitejs.dev)
 - [🏁 Quick start](#-quick-start)
 - [💻 Other commands](#-other-commands)
 - [📦 What's inside](#-whats-inside)
+- [🚀 Setup Vite dev server](#-setup-vite-dev-server)
 - [🎒 Other configurations](#-other-configurations)
 
 ## 🏁 Quick start
@@ -210,7 +211,7 @@ $devServer->start();
 $assets->get('main/main.css');
 
 // You can also set a PSR container as a facade accessor
-Assets::setFacade($container);
+Assets::setFacadeAccessor($container);
 Assets::get('main/main.css')
 ```
 
@@ -227,6 +228,89 @@ and alter the script tags to make sure the source files can be loaded as modules
 
 
 
+## 🚀 Setup vite dev server
+
+
+### Setting it up with DDEV
+
+In this example we'll use DDEV as our local environment.  [You can read more about DDEV here](https://ddev.com/).
+
+Within DDEV you need to make sure the port we'll use is being exposed and routed accordingly. We will be using port 3000 which is set by default in the ViteJS config. This can be done with this simple add-on: https://github.com/wp-strap/ddev-vite
+
+Lets assume you already have installed DDEV on your computer and that we're inside a folder called "wp-vite-playground".
+
+You can bootstrap a new WP project with these combined commands:
+
+```shell
+mkdir wordpress
+ddev config --docroot=wordpress --project-type=wordpress
+ddev get wp-strap/ddev-vite
+ddev start
+ddev exec wp core download --path="wordpress"
+ddev exec wp core install --path="wordpress" --title="WPVitePlayground" --admin_name="admin" --admin_password="password" --admin_email="admin@local.ddev" --url="https://wp-vite-playground.ddev.site"
+```
+This will:
+- Set up and configure DDEV
+- Add our simple add-on to it that expose the port we'll need
+- Download WordPress and installs it for you with wp-vite-playground.ddev.site as domain and "admin" as login and "password" as pass.
+
+You should be able to visit the site on https://wp-vite-playground.ddev.site
+
+Or if you already have a DDEV server running you can do the following commands to install the add-on and restart the server
+```shell
+ddev get wp-strap/ddev-vite
+ddev restart
+```
+Let's assume you've done the following:
+- Git clone `wp-vite-starter` into `wordpress/wp-content/plugins` with the folder name `wp-vite-starter`
+- Run the `yarn install`, `composer install` and `yarn build` commands to install all the packages and build + compile the example files from the repo
+- Created a plugin file called wp-vite-starter.php in the plugin folder with the following basic contents: (and activated the plugin)
+
+```php
+<?php
+/*
+Plugin Name: WP Vite Starter
+Description: Playground
+Version: 1.0.0
+*/
+
+use WPStrap\Vite\Assets;
+
+/**
+ * Require composer autoloader.
+ */
+require 'vendor/autoload.php';
+
+
+Assets::register([
+    'dir' => plugin_dir_path(__FILE__),
+    'url' => plugins_url(\basename(__DIR__))
+]);
+
+Assets::devServer()->start();
+
+\add_action('wp_enqueue_scripts', function () {
+    wp_enqueue_script('main', Assets::js('main'));
+    wp_enqueue_style('main', Assets::css('main'));
+});
+
+```
+
+You now need to spin up the Vite dev server using SSH so it runs on the local/docker environment using `ddev ssh`:
+```shell
+ddev ssh
+ 
+cd wordpress/wp-content/plugins/wp-vite-starter
+
+yarn install 
+yarn start
+```
+
+Refresh the browser while you're one wp-vite-playground.ddev.site and you should be able to see a script on https://wp-vite-playground.ddev.site:3000/@vite/client
+
+The `Assets::devServer()->start()` function will listen to this page and inject the scripts into the site.
+
+![hmr-gif](https://wpstrap.com/docs/vite-js-hmr.gif)
 
 ## 🎒 Other configurations
 
@@ -312,7 +396,7 @@ when using this approach you can use the PHP asset functions a bit differently:
 // When you use the get method you need to call the whole path
 Assets::get('Main/Static/js/main.js')
 
-// When using these methods you are able to use the first param to point to the domain and second param to point o the file.
+// When using these methods you are able to use the first param to point to the domain and second param to point to the file.
 Assets::js('Blocks', 'example-block')
 Assets::css('Main', 'main')
 Assets::image('Admin', 'bird-on-black.jpg')
@@ -323,3 +407,4 @@ $assets->css('Main', 'main')
 $assets->image('Admin', 'bird-on-black.jpg')
 $assets->svg('Main', 'instagram')
 ```
+

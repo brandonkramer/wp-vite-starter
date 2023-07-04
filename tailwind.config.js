@@ -14,7 +14,7 @@ module.exports = {
      */
     content: [
         "./index.php",
-        "./src/**/*.{js,ts,jsx,tsx}",
+        "./src/**/*.{js,ts,jsx,tsx,php}",
         "./templates/**/*.php ",
         "./inc/**/*.php",
     ],
