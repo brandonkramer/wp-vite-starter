@@ -16,7 +16,7 @@ You can read more about ViteJS on [vitejs.dev](https://vitejs.dev)
 - [🏁 Quick start](#-quick-start)
 - [💻 Other commands](#-other-commands)
 - [📦 What's inside](#-whats-inside)
-- [💻 Other configurations](#-other-configurations)
+- [🎒 Other configurations](#-other-configurations)
 
 ## 🏁 Quick start
 
@@ -215,7 +215,7 @@ and alter the script tags to make sure the source files can be loaded as modules
 
 
 
-## 💻 Other configurations
+## 🎒 Other configurations
 
 The following things can also be configured:
 
