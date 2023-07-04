@@ -99,16 +99,17 @@ Assets::devServer()->start();
 // Returns the compiled asset url from the build folder with HASH
 // OR returns the source file when ViteJS dev server is running.
 
-Assets::get('js/main.js') // => https://your-site.com/wp-content/plugins/your-plugin/build/js/main.oi4h32d.js
+Assets::get('js/main.js') 
+// returns: https://your-site.com/wp-content/plugins/your-plugin/build/js/main.oi4h32d.js
 
 // Alternatively you can use these as well which will be more targeted to specific folders
 // and for some of the methods you don't need to write the file extension
 
-Assets::js('main') // => https://your-site.com/wp-content/plugins/your-plugin/build/js/main.oi4h32d.js
-Assets::css('main') // => https://your-site.com/wp-content/plugins/your-plugin/build/js/main.oi4h32d.css
-Assets::image('bird-on-black.jpg') // => https://your-site.com/wp-content/plugins/your-plugin/build/images/bird-on-black.oi4h32d.jpg
-Assets::svg('instagram') // => https://your-site.com/wp-content/plugins/your-plugin/build/svg/instagram.oi4h32d.svg
-Assets::font('SourceSerif4Variable-Italic.ttf.woff2') // => https://your-site.com/wp-content/plugins/your-plugin/build/fonts/SourceSerif4Variable-Italic.ttf.oi4h32d.woff2
+Assets::js('main') 
+Assets::css('main') 
+Assets::image('bird-on-black.jpg') 
+Assets::svg('instagram') 
+Assets::font('SourceSerif4Variable-Italic.ttf.woff2')
 
 // Example of enqueuing the scripts
 add_action('wp_enqueue_scripts', function () {
@@ -138,12 +139,12 @@ $assets = (new AssetsService())->register([
 // Listens to ViteJS dev server and makes adjustment to make HMR work
 (new DevServer($assets))->start();
 
-$assets->get('js/main.js'); // => https://your-site.com/wp-content/plugins/your-plugin/build/js/main.oi4h32d.js
-$assets->js('main') // => https://your-site.com/wp-content/plugins/your-plugin/build/js/main.oi4h32d.js
-$assets->css('main') // => https://your-site.com/wp-content/plugins/your-plugin/build/js/main.oi4h32d.css
-$assets->image('bird-on-black.jpg') // => https://your-site.com/wp-content/plugins/your-plugin/build/images/bird-on-black.oi4h32d.jpg
-$assets->svg('instagram') // => https://your-site.com/wp-content/plugins/your-plugin/build/svg/instagram.oi4h32d.svg
-$assets->font('SourceSerif4Variable-Italic.ttf.woff2') // => https://your-site.com/wp-content/plugins/your-plugin/build/fonts/SourceSerif4Variable-Italic.ttf.oi4h32d.woff2
+$assets->get('js/main.js'); 
+$assets->js('main') 
+$assets->css('main') 
+$assets->image('bird-on-black.jpg') 
+$assets->svg('instagram') 
+$assets->font('SourceSerif4Variable-Italic.ttf.woff2')
 ```
 
 Example with using instances wih functions
