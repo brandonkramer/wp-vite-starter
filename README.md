@@ -34,7 +34,7 @@ yarn build
 
 ## 💻 Other commands
 
-Build assets in dev mode. You can use the 'isDev' variable inside the ViteJS config to use different configurations.
+Build assets in dev mode. This is based off the 'development' mode in ViteJS.
 ```shell
 yarn build-dev
 ```
@@ -55,13 +55,13 @@ The idea here is to keep the starter kit simple so additional things can be adde
 plugin structures.
 
 ### ViteJS Config
-The config is extending a base config from the `@wp-strap/vite` package which is opinionated and configured for WordPress development. This is set up to keep
-the config file minimal and consistent throughout different projects. The base configurations can all be overwritten. The config currently includes the following:
+The config is extending a base config from the `@wp-strap/vite` package through the WPStrap.viteConfigBase() plugin which is opinionated and configured for WordPress development. This is set up to keep
+the config file minimal and consistent throughout different projects. The base configurations can be overwritten. The config currently includes the following:
 
 - Esbuild for minification which is turned off with the `-dev` commands 
 - Esbuild sourcemaps are added when using the `-dev` commands
 - Esbuild is configured to make ReactJS code work inside `.js` files instead of the default `.jsx`
-- JS entries are automatically included from first-level folders using FastGlob (e.g., js/my-script.js, blocks/my-block.js).
+- JS entries are automatically included from first-level folders using fast-glob (e.g., js/my-script.js, blocks/my-block.js).
 - CSS entries are also automatically included, bundled and compiled without importing them into JS files which is more suitable for WordPress projects.
 - A custom ViteJS plugin is included that updates/refreshes the dev server (HMR) when a change is made inside PHP files
 - A custom RollupJS plugin is included that encapsulates JS bundles to prevent mix-up of global variables after minification
@@ -337,12 +337,12 @@ WPStrap.rollupEncapsulateBundles({
 })
 ```
 ### Change src and build folders
-With the `root` and `outDir` core config variables you're able to change the source and build folders, name them differently or change the paths.
+With the `root` and `outDir` config base variables inside the userOptions param of `WPStrap.viteConfigBase` you're able to change the source and build folders, name them differently or change the paths.
 ```js
-export default defineConfig(({command, mode}, core = {
-    root: 'assets', 
+WPStrap.viteConfigBase({
+    root: 'assets',
     outDir: 'dist',
-})=>({}));
+})
 ```
 You will need to change these in the PHP register method as well.
 ```php
@@ -357,11 +357,11 @@ $assets->register([
 ### Use an entry point and setup domain folder structure
 Aside to `root` and `outDir` you can define and set an `entry` which will try to find asset files from this entry point inside the `root` folder. 
 ```js
-export default defineConfig(({command, mode}, core = {
+WPStrap.viteConfigBase({
     root: 'src', 
     outDir: 'build', 
     entry: 'Static', // <-----
-})=>({}));
+})
 ```
 For example if you set `root` to "src" and `entry` to "Static" like the above, you're able to maintain different bundles within different domain folders and mix it up with PHP files:
 ```
