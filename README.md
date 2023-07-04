@@ -16,16 +16,7 @@ You can read more about ViteJS on [vitejs.dev](https://vitejs.dev)
 - [🏁 Quick start](#-quick-start)
 - [💻 Other commands](#-other-commands)
 - [📦 What's insides](#-whats-inside)
-    - [ViteJS Config](#vitejs-config)
-    - [PostCSS config](#postcss-config)
-    - [TailwindCSS config](#tailwindcss-config)
-    - [PHP/Composer](#php--composer)
-    - [DevServer](#devserver)
-- [💻 Other configurations]()
-  - [Use rollupCopyAssets for different asset files](#use-rollupcopyassets-for-different-asset-files)
-  - [Customize bundle encapsulation](#customize-bundle-encapsulation)
-  - [Change src and build folders](r#change-src-and-build-folders)
-  - [Use an entry point and setup domain folder structure](#use-an-entry-point-and-setup-domain-folder-structure)
+- [💻 Other configurations](#-other-configurations)
 
 ## 🏁 Quick start
 
