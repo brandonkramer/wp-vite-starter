@@ -419,7 +419,7 @@ yarn add -D rollup-plugin-external-globals
 import * as WPStrap from '@wp-strap/vite';
 import externalGlobals from 'rollup-plugin-external-globals';
 
-export default defineConfig(({command, mode}, core = {}) => ({
+export default defineConfig({
 
     /* ViteJS plugins */
     plugins: [
@@ -431,5 +431,5 @@ export default defineConfig(({command, mode}, core = {}) => ({
         })
     ],
 
-}));
+});
 ```
