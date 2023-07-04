@@ -5,7 +5,7 @@ import * as WPStrap from '@wp-strap/vite';
 export default defineConfig({
 
     /* ViteJS plugins */
-    plugins: [WPStrap.viteConfigBase(), WPStrap.viteHandleHotUpdate(), ViteImageOptimizer()],
+    plugins: [WPStrap.viteConfigBase(), ViteImageOptimizer()],
 
     /* Build options */
     build: {
@@ -14,10 +14,7 @@ export default defineConfig({
         rollupOptions: {
 
             /* RollupJS plugins */
-            plugins: [
-                WPStrap.rollupEncapsulateBundles(),
-                WPStrap.rollUpCopyAssets(),
-            ],
+            plugins: [WPStrap.rollupEncapsulateBundles(), WPStrap.rollUpCopyAssets()],
         },
     },
 });
