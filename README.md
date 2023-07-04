@@ -60,7 +60,7 @@ the config file minimal and consistent throughout different projects. The base c
 - Esbuild for minification which is turned off with the `-dev` commands 
 - Esbuild sourcemaps are added when using the `-dev` commands
 - Esbuild is configured to make ReactJS code work inside `.js` files instead of the default `.jsx`
-- JS entries are automatically included from the first-level folders using FastGlob (e.g., js/my-script.js, blocks/my-block.js).
+- JS entries are automatically included from first-level folders using FastGlob (e.g., js/my-script.js, blocks/my-block.js).
 - CSS entries are also automatically included, bundled and compiled without importing them into JS files which is more suitable for WordPress projects.
 - A custom ViteJS plugin is included that updates/refreshes the dev server (HMR) when a change is made inside PHP files
 - A custom RollupJS plugin is included that encapsulates JS bundles to prevent mix-up of global variables after minification
