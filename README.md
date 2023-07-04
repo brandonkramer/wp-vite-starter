@@ -115,7 +115,7 @@ Assets::font('SourceSerif4Variable-Italic.ttf.woff2')
 });
 ```
 
-Example with using instances that you can use with dependency injection and IoC containers
+Example with using instances 
 ```php
 use WPStrap\Vite\AssetsService;
 use WPStrap\Vite\DevServer;
