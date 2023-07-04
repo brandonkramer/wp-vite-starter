@@ -80,7 +80,7 @@ TailwindCSS is added through the PostCSS config file and is currently only confi
 ### PHP / Composer
 Composer includes the `wp-strap/vite` package that exposes some classes which are responsible for generating asset URLs from the manifest.json that you can register or enqueue and enabling HMR when the ViteJS dev server is running.
 
-The classes follow PSR practices with interfaces, so it can be included trough OOP with dependency injection and IoC containers. It also provides a Facade class which allows you to use static methods instead if that's your jam.
+The classes follow PSR practices with interfaces, so it can be included trough OOP with dependency injection and IoC containers. It also provides a Facade class that allows you to use static methods instead to call it everywhere you like if that's your jam.
 
 
 Example with using the facade:
@@ -109,7 +109,7 @@ Assets::svg('instagram')
 Assets::font('SourceSerif4Variable-Italic.ttf.woff2')
 
 // Example of enqueuing the scripts
-\add_action('wp_enqueue_scripts', function () {
+add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('main', Assets::js('main'), []);
     wp_enqueue_style('main', Assets::css('main'), []);
 });
@@ -151,7 +151,7 @@ $assets->font('SourceSerif4Variable-Italic.ttf.woff2');
 
 Example with using instances wih functions
 ```php
-use WPStrap\Vite\AssetsInterface
+use WPStrap\Vite\AssetsInterface;
 use WPStrap\Vite\AssetsService;
 use WPStrap\Vite\DevServer;
 
@@ -171,7 +171,7 @@ function assets(): AssetsInterface {
 (new DevServer(assets()))->start();
 
 
-\add_action('wp_enqueue_scripts', function () {
+add_action('wp_enqueue_scripts', function () {
     wp_enqueue_script('main', assets()->js('main'), []);
     wp_enqueue_style('main', assets()->css('main'), []);
 });
@@ -180,7 +180,7 @@ function assets(): AssetsInterface {
 Example with using the League Container
 ```php
 use League\Container\Container;
-use WPStrap\Vite\AssetsInterface
+use WPStrap\Vite\AssetsInterface;
 use WPStrap\Vite\AssetsService;
 use WPStrap\Vite\DevServer;
 use WPStrap\Vite\DevServerInterface;
@@ -198,6 +198,17 @@ $assets->get('main/main.css')
 ```
 
 
+Starts listening to check if the ViteJS dev server is running locally on port 3000
+If yes, it will include viteJS scripts from the dev server and will filter all asset urls
+to load the source files instead for HMR. This should only be run on local/dev environments.
+
+`Assets::devServer()->start();`
+
+OR
+
+`(new DevServer($assets))->start();`
+
+
 ## 💻 Other configurations
 
 The following things can also be configured:
@@ -206,7 +217,7 @@ The following things can also be configured:
 
 With the `WPStrap.rollUpCopyAssets` userOptions param you're able to add additional asset folders by adding additional test rules aside to images/svg/fonts, and you can customize the default ones as well:
 ```js
-WPStrap.rollUpCopyAssets(path.resolve(core.dirname, core.root), {
+WPStrap.rollUpCopyAssets({
     rules: {
         images: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
         svg: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
@@ -224,13 +235,28 @@ WPStrap.rollupEncapsulateBundles({
 ```
 ### Change src and build folders
 With the `root` and `outDir` core config variables you're able to change the source and build folders, name them differently or change the paths.
+```js
+export default defineConfig(({command, mode}, core = {
+    root: 'assets', 
+    outDir: 'dist',
+})=>({}));
+```
+You will need to change these in the PHP register method as well.
+```php
+$assets->register([
+    'dir' => plugin_dir_path(__FILE__), 
+    'url' => plugins_url(\basename(__DIR__)) ,
+    'root' => 'assets',
+    'outDir' =>> 'dist'
+]);
+```
 
 ### Use an entry point and setup domain folder structure
 Aside to `root` and `outDir` you can define and set an `entry` which will try to find asset files from this entry point inside the `root` folder. 
 ```js
 export default defineConfig(({command, mode}, core = {
     root: 'src', 
-    outDir: `build`, 
+    outDir: 'build', 
     entry: 'Static', // <-----
 })=>({}));
 ```
