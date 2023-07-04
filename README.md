@@ -308,7 +308,7 @@ yarn start
 
 Refresh the browser while you're one wp-vite-playground.ddev.site and you should be able to see a script on https://wp-vite-playground.ddev.site:3000/@vite/client
 
-The `Assets::devServer()->start()` function will listen to this page and inject the scripts into the site.
+The `Assets::devServer()->start()` function will listen to this page and inject the scripts into the site. The dev server + HMR should be working now: If you make a change in src/css/main.pcss it should automatically inject the changes into the page without refreshing the page:
 
 ![hmr-gif](https://wpstrap.com/docs/vite-js-hmr.gif)
 
