@@ -1,0 +1,14 @@
+{
+    "name": "wp-strap/wp-vite-starter",
+    "autoload": {
+        "psr-4": {
+            "WPViteStarter\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": ["src/"]
+    },
+    "require": {
+        "wp-strap/vite": "^0.1.2"
+    }
+}

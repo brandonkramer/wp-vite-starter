@@ -5,7 +5,7 @@ import * as WPStrap from '@wp-strap/vite';
 export default defineConfig(({command, mode}, core = {
     isDev: mode === 'development', /* Determines if we're running in dev mode */
     root: 'src',  /* Project root directory for Vite */
-    outDir: `build`, /* Folder that contains our processed files */
+    outDir: 'build', /* Folder that contains our processed files */
     dirname: __dirname /* Absolute path to current dir */
 }) => ({
     ...WPStrap.baseConfig(core), ...{
