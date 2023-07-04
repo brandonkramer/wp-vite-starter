@@ -22,12 +22,16 @@ export default defineConfig({
                 /**
                  * Encapsulates JS bundles to prevent mix-up of
                  * global variables after minification
+                 *
+                 * @see https://github.com/wp-strap/wp-vite-starter#rollupencapsulatebundles
                  */
                 WPStrap.rollupEncapsulateBundles(),
 
                 /**
                  * Collects images, SVG and font files from
                  * folders and emits them
+                 *
+                 * @see https://github.com/wp-strap/wp-vite-starter#rollupcopyassets
                  */
                 WPStrap.rollUpCopyAssets()
             ],
