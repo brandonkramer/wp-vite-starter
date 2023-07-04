@@ -25,6 +25,8 @@ Build our assets into the 'build' folder.
 yarn build
 ```
 
+## 💻 Other commands
+
 Build assets in dev mode. You can use the 'isDev' variable inside the ViteJS config to use different configurations.
 ```
 yarn build-dev
