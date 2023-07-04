@@ -4,7 +4,7 @@
   </a>
   <h1>WP ViteJS 4 starter kit</h1>
   <p>
-Simple lightweight starter kit to make use of Vite's blazing fast and efficient frontend build tool for WordPress plugin and theme development. Comes optional packages that provide front-end & back-end (PHP) utilities. The "src" folder includes JS, PostCSS, images, fonts, SVG and a gutenberg block as examples.
+Simple lightweight starter kit to make use of Vite's blazing fast and efficient frontend build tool for WordPress plugin and theme development. Comes with optional packages that provide front-end & back-end (PHP) utilities. The "src" folder includes JS, PostCSS, images, fonts, SVG and a gutenberg block as examples.
 
 You can read more about ViteJS on [vitejs.dev](https://vitejs.dev)
 </p>
