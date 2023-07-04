@@ -15,7 +15,7 @@ You can read more about ViteJS on [vitejs.dev](https://vitejs.dev)
 ## 📚 Table of contents
 - [🏁 Quick start](#-quick-start)
 - [💻 Other commands](#-other-commands)
-- [📦 What's insides](#-whats-inside)
+- [📦 What's inside](#-whats-inside)
 - [💻 Other configurations](#-other-configurations)
 
 ## 🏁 Quick start
