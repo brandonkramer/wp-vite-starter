@@ -1,3 +1,6 @@
+/**
+ * PostCSS config
+ */
 module.exports = {
 
     /**
@@ -5,6 +8,7 @@ module.exports = {
      * run in. Some plugins are required to run before others will.
      */
     plugins: {
+
         /**
          * Can consume local files, node modules or web_modules. To resolve
          * path of an @import rule, it can look into root directory or local modules.

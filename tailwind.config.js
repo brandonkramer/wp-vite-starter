@@ -1,3 +1,6 @@
+/**
+ * Tailwind Config
+ */
 module.exports = {
 
     /* The prefix option adds a custom prefix
