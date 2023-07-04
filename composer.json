@@ -9,6 +9,6 @@
         "classmap": ["src/"]
     },
     "require": {
-        "wp-strap/vite": "^0.1.2"
+        "wp-strap/vite": "^0.1.4"
     }
 }
