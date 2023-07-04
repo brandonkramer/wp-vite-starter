@@ -28,25 +28,25 @@ composer install
 ```
 
 Build our assets into the 'build' folder.
-```
+```shell
 yarn build
 ```
 
 ## 💻 Other commands
 
 Build assets in dev mode. You can use the 'isDev' variable inside the ViteJS config to use different configurations.
-```
+```shell
 yarn build-dev
 ```
 
 Builds assets in real-time and watches over files.
-```
+```shell
 yarn watch
 yarn watch-dev
 ```
 
 Start ViteJS dev server.
-```
+```shell
 yarn start
 ```
 
@@ -408,3 +408,28 @@ $assets->image('Admin', 'bird-on-black.jpg')
 $assets->svg('Main', 'instagram')
 ```
 
+### External Dependencies
+This is inspired by [kucrut](https://github.com/kucrut); If you have a JavaScript package that relies on WordPress modules, such as `@wordpress/i18n`, you have the option to define them as externals using the `rollup-plugin-external-globals` plugin and the `WPStrap.WPGlobals()` function
+
+```shell
+yarn add -D rollup-plugin-external-globals
+```
+
+```js
+import * as WPStrap from '@wp-strap/vite';
+import externalGlobals from 'rollup-plugin-external-globals';
+
+export default defineConfig(({command, mode}, core = {}) => ({
+
+    /* ViteJS plugins */
+    plugins: [
+        
+        /* External globals */
+        externalGlobals({
+            ...WPStrap.wpGlobals(),
+            ...{'some-registered-script-handle': 'GlobalVar'}
+        })
+    ],
+
+}));
+```
