@@ -53,7 +53,7 @@ yarn start
 
 ## 📦 What's inside
 The idea here is to keep the starter kit simple so additional things can be added for different projects, and so it can be integrated into different theme and 
-plugin structures.
+plugin structures and maintained through node/composer packages.
 
 ### ViteJS Config
 The config is extending a base config from the `@wp-strap/vite` package through a plugin which is opinionated and configured for WordPress development. This is set up to keep
