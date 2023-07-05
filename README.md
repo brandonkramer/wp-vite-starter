@@ -64,7 +64,7 @@ the config file minimal and consistent throughout different projects. The config
 - Esbuild is configured to make ReactJS code work inside `.js` files instead of the default `.jsx`
 - JS entries are automatically included from first-level folders using fast-glob (e.g., js/my-script.js, blocks/my-block.js).
 - CSS entries are also automatically included, bundled and compiled without importing them into JS files which is more suitable for WordPress projects.
-- It will update/refresh the dev server (HMR) when a change is made inside PHP files
+- It will update/refresh the dev server (HMR/Hot Module Replacement) when a change is made inside PHP files
 - It will encapsulate JS bundles to prevent mix-up of global variables after minification  
 - It will collect images, SVG and font files from folders and emits them to make them transformable by plugins
 - [Vite Plugin Image Optimizer](https://github.com/FatehAK/vite-plugin-image-optimizer) is included that optimizes images and SVG files that we emit
