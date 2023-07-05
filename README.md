@@ -259,34 +259,8 @@ and alter the script tags to make sure the source files can be loaded as modules
 
 ### Setting it up with DDEV
 
-In this example we'll use DDEV as our local environment.  [You can read more about DDEV here](https://ddev.com/).
-
 Within DDEV you need to make sure the port we'll use is being exposed and routed accordingly. We will be using port 3000 which is set by default in the ViteJS config. This can be done with this simple add-on: https://github.com/wp-strap/ddev-vite
 
-Lets assume you already have installed DDEV on your computer and we're inside a folder called "wp-vite-playground".
-
-You can bootstrap a new WP project with these combined commands:
-
-```shell
-mkdir wordpress
-ddev config --docroot=wordpress --project-type=wordpress
-ddev get wp-strap/ddev-vite
-ddev start
-ddev exec wp core download --path="wordpress"
-ddev exec wp core install --path="wordpress" --title="WPVitePlayground" --admin_name="admin" --admin_password="password" --admin_email="admin@local.ddev" --url="https://wp-vite-playground.ddev.site"
-```
-This will:
-- Set up and configure DDEV
-- Add our simple add-on to it that expose the port we'll need
-- Download WordPress and installs it for you with wp-vite-playground.ddev.site as domain and "admin" as login and "password" as pass.
-
-You should be able to visit the site on https://wp-vite-playground.ddev.site
-
-Or if you already have a DDEV server running you can do the following commands to install the add-on and restart the server
-```shell
-ddev get wp-strap/ddev-vite
-ddev restart
-```
 Let's assume you've done the following:
 - Git clone `wp-vite-starter` into `wordpress/wp-content/plugins` with the folder name `wp-vite-starter`
 - Run the `yarn install`, `composer install` and `yarn build` commands to install all the packages and build + compile the example files from the repo
