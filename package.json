@@ -9,7 +9,7 @@
     "watch-dev": "vite build --watch --config ./vite.config.js --mode development"
   },
   "devDependencies": {
-    "@wp-strap/vite": "0.6.1",
+    "@wp-strap/vite": "0.8.0",
     "autoprefixer": "^10.4.7",
     "postcss": "^8.4.14",
     "postcss-combine-duplicated-selectors": "^10.0.3",

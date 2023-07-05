@@ -35,6 +35,7 @@ yarn build
 ## 💻 Other commands
 
 Build assets in dev mode. This is based off the 'development' mode in ViteJS.
+Will turn off minification and add sourcemaps.
 ```shell
 yarn build-dev
 ```
@@ -55,17 +56,17 @@ The idea here is to keep the starter kit simple so additional things can be adde
 plugin structures.
 
 ### ViteJS Config
-The config is extending a base config from the `@wp-strap/vite` package which is opinionated and configured for WordPress development. This is set up to keep
-the config file minimal and consistent throughout different projects. The base configurations can be overwritten. It currently includes the following:
+The config is extending a base config from the `@wp-strap/vite` package through a plugin which is opinionated and configured for WordPress development. This is set up to keep
+the config file minimal and consistent throughout different projects. The configurations can be overwritten. It currently includes the following:
 
 - Esbuild for minification which is turned off for `-dev` commands 
 - Esbuild sourcemaps are added when using `-dev` commands
 - Esbuild is configured to make ReactJS code work inside `.js` files instead of the default `.jsx`
 - JS entries are automatically included from first-level folders using fast-glob (e.g., js/my-script.js, blocks/my-block.js).
 - CSS entries are also automatically included, bundled and compiled without importing them into JS files which is more suitable for WordPress projects.
-- A custom ViteJS plugin is included that updates/refreshes the dev server (HMR) when a change is made inside PHP files
-- A custom RollupJS plugin is included that encapsulates JS bundles to prevent mix-up of global variables after minification
-- A custom RollupJS plugin is included that collects images, SVG and font files from folders and emits them to make them transformable by plugins
+- It will update/refresh the dev server (HMR) when a change is made inside PHP files
+- It will encapsulate JS bundles to prevent mix-up of global variables after minification  
+- It will collect images, SVG and font files from folders and emits them to make them transformable by plugins
 - [Vite Plugin Image Optimizer](https://github.com/FatehAK/vite-plugin-image-optimizer) is included that optimizes images and SVG files that we emit
 
 ### PostCSS config
@@ -227,7 +228,7 @@ In this example we'll use DDEV as our local environment.  [You can read more abo
 
 Within DDEV you need to make sure the port we'll use is being exposed and routed accordingly. We will be using port 3000 which is set by default in the ViteJS config. This can be done with this simple add-on: https://github.com/wp-strap/ddev-vite
 
-Lets assume you already have installed DDEV on your computer and that we're inside a folder called "wp-vite-playground".
+Lets assume you already have installed DDEV on your computer and we're inside a folder called "wp-vite-playground".
 
 You can bootstrap a new WP project with these combined commands:
 
@@ -306,30 +307,34 @@ The `Assets::devServer()->start()` function will listen to this page and inject 
 
 The following things can also be configured:
 
-### rollupCopyAssets
+### Change rules for asset files that are copied
 
-With the `WPStrap.rollUpCopyAssets` userOptions param you're able to add additional asset folders by adding additional test rules aside to images/svg/fonts, and you can customize the default ones as well:
+With the `userOptions.assets.rules` param you're able to add additional asset folders by adding additional test rules aside to images/svg/fonts, and you can customize the default ones as well:
 ```js
-WPStrap.rollUpCopyAssets({
-    rules: {
-        images: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
-        svg: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
-        fonts: /ttf|woff|woff2/i
+viteWPConfig({
+    assets: {
+        rules: {
+            images: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
+            svg: /png|jpe?g|svg|gif|tiff|bmp|ico/i,
+            fonts: /ttf|woff|woff2/i
+        }
     }
 })
 ```
-### rollupEncapsulateBundles
-You can customize the way it encapsulates bundles by using the userOptions param in `WPStrap.rollupEncapsulateBundles`:
+### Customize header & footer of bundle encapsulation
+You can customize the way it encapsulates bundles by using the `userOptions.bundles` param:
 ```js
-WPStrap.rollupEncapsulateBundles({
-    banner: '/*My Custom Project*/(function(){', // Adds a comment before each bundle
-    footer: '})();'
+viteWPConfig({
+    bundles: {
+        banner: '/*My Custom Project*/(function(){', // Adds a comment before each bundle
+        footer: '})();'
+    }
 })
 ```
 ### Change src and build folders
-With the `root` and `outDir` config base variables inside the userOptions param of `WPStrap.viteConfigBase` you're able to change the source and build folders, name them differently or change the paths.
+With the `root` and `outDir` params you're able to change the source and build folders, name them differently or change the paths.
 ```js
-WPStrap.viteConfigBase({
+viteWPConfig({
     root: 'assets',
     outDir: 'dist',
 })
@@ -337,9 +342,8 @@ WPStrap.viteConfigBase({
 You will need to change these in the PHP register method as well.
 ```php
 $assets->register([
-    'dir' => plugin_dir_path(__FILE__), 
-    'url' => plugins_url(\basename(__DIR__)) ,
-    'root' => 'assets',
+    /* .... */
+    'root' => 'assets', 
     'outDir' =>> 'dist'
 ]);
 ```
@@ -347,7 +351,7 @@ $assets->register([
 ### Use an entry point and setup domain folder structure
 Aside to `root` and `outDir` you can define and set an `entry` which will try to find asset files from this entry point inside the `root` folder. 
 ```js
-WPStrap.viteConfigBase({
+viteWPConfig({
     root: 'src', 
     outDir: 'build', 
     entry: 'Static', // <-----
@@ -397,16 +401,22 @@ $assets->css('Main', 'main')
 $assets->image('Admin', 'bird-on-black.jpg')
 $assets->svg('Main', 'instagram')
 ```
-
+The entry is set to "Static" by default inside the php register method, when you want to name this differently, you need to configure it here as well.
+```php
+$assets->register([
+      /* .... */
+    'entry' =>> 'Assets'
+]);
+```
 ### External Dependencies
-This is inspired by [kucrut](https://github.com/kucrut); If you have a JavaScript package that relies on WordPress modules, such as `@wordpress/i18n`, you have the option to define them as externals using the `rollup-plugin-external-globals` plugin and the `WPStrap.WPGlobals()` function
+This is inspired by [kucrut](https://github.com/kucrut); If you have a JavaScript package that relies on WordPress modules, such as `@wordpress/i18n`, you have the option to define them as externals using the `rollup-plugin-external-globals` plugin and the `wpGlobals()` function
 
 ```shell
 yarn add -D rollup-plugin-external-globals
 ```
 
 ```js
-import * as WPStrap from '@wp-strap/vite';
+import wpGlobals from '@wp-strap/vite';
 import externalGlobals from 'rollup-plugin-external-globals';
 
 export default defineConfig({
@@ -416,7 +426,7 @@ export default defineConfig({
         
         /* External globals */
         externalGlobals({
-            ...WPStrap.wpGlobals(),
+            ...wpGlobals(),
             ...{'some-registered-script-handle': 'GlobalVar'}
         })
     ],

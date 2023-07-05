@@ -1,42 +1,8 @@
 import {defineConfig} from 'vite'
+import {viteWPConfig} from '@wp-strap/vite';
 import {ViteImageOptimizer} from 'vite-plugin-image-optimizer';
-import * as WPStrap from '@wp-strap/vite';
 
 export default defineConfig({
-
-    /**
-     * Build options
-     */
-    build: {
-
-        /**
-         * RollupJS options
-         */
-        rollupOptions: {
-
-            /**
-             * RollupJS plugins
-             */
-            plugins: [
-
-                /**
-                 * Encapsulates JS bundles to prevent mix-up of
-                 * global variables after minification
-                 *
-                 * @see https://github.com/wp-strap/wp-vite-starter#rollupencapsulatebundles
-                 */
-                WPStrap.rollupEncapsulateBundles(),
-
-                /**
-                 * Collects images, SVG and font files from
-                 * folders and emits them
-                 *
-                 * @see https://github.com/wp-strap/wp-vite-starter#rollupcopyassets
-                 */
-                WPStrap.rollUpCopyAssets()
-            ],
-        },
-    },
 
     /**
      * ViteJS plugins
@@ -44,12 +10,12 @@ export default defineConfig({
     plugins: [
 
         /**
-         * Extends a base config which is opinionated
-         * and configured for WordPress development
+         * Base config that includes configurations for
+         * WP development and several custom plugins
          *
-         * @see https://github.com/wp-strap/wp-vite-starter/#vitejs-config
+         * @see https://github.com/wp-strap/wp-vite-starter#vitejs-config
          */
-        WPStrap.viteConfigBase(),
+        viteWPConfig(),
 
         /**
          * Optimizes images and SVG files that we emit
