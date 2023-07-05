@@ -34,8 +34,7 @@ yarn build
 
 ## 💻 Other commands
 
-Build assets in dev mode. This is based off the 'development' mode in ViteJS.
-Will turn off minification and add sourcemaps.
+Build assets in `development` mode.
 ```shell
 yarn build-dev
 ```
