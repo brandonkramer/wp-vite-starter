@@ -157,9 +157,11 @@ $assets->image('bird-on-black.jpg')
 $assets->svg('instagram') 
 $assets->font('SourceSerif4Variable-Italic.ttf.woff2')
 
+// Traditional 
 wp_enqueue_script('my-handle', $this->assets->js('main'), $this->assets->deps('scripts'), $this->assets->version());
 wp_enqueue_style('my-handle', $this->assets->css('main'), $this->assets->deps('styles'), $this->assets->version());
 
+// Custom methods
 $this->assets->enqueueStyle('my-handle', 'main');
 $this->assets->enqueueScript('my-handle', 'main', ['another-dep'])
     ->useAsync()
@@ -196,8 +198,18 @@ function assets(): AssetsInterface {
 
 
 add_action('wp_enqueue_scripts', function () {
+
+    // Traditional
     wp_enqueue_script('my-handle', assets()->js('main'), assets()->deps('scripts'), assets()->version());
     wp_enqueue_style('my-handle', assets()->css('main'), assets()->deps('styles'), assets()->version());
+    
+    // Using custom methods
+    assets()->enqueueStyle('my-handle', 'main');
+    assets()->enqueueScript('my-handle', ['Main', 'main'], ['another-dep'])
+        ->useAsync()
+        ->useAttribute('key', 'value')
+        ->localize('object_name', ['data' => 'data'])
+        ->appendInline('<script>console.log("hello");</script>');
 });
 ```
 
@@ -419,10 +431,16 @@ Assets::css('Main', 'main')
 Assets::image('Admin', 'bird-on-black.jpg')
 Assets::svg('Main', 'instagram')
 
+Assets:enqueueScript('my-handle', ['Admin', 'admin-page'])
+Assets:enqueueStyle('my-handle', ['Blocks', 'example-block'])
+
 $assets->js('Blocks', 'example-block')
 $assets->css('Main', 'main')
 $assets->image('Admin', 'bird-on-black.jpg')
 $assets->svg('Main', 'instagram')
+
+$assets->enqueueScript('my-handle', ['Admin', 'admin-page'])
+$assets->enqueueStyle('my-handle', ['Blocks', 'example-block'])
 ```
 The entry is set to "Static" by default inside the php register method, when you want to name this differently, you need to configure it here as well.
 ```php
