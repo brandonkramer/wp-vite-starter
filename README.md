@@ -93,10 +93,12 @@ Example with using the facade:
 ```php
 use WPStrap\Vite\Assets;
 
-// Resolves asset service instance and registers project configurations
+// Resolves instance and registers project configurations
 Assets::register([
     'dir' => plugin_dir_path(__FILE__), // or get_stylesheet_directory() for themes
     'url' => plugins_url(\basename(__DIR__)) // or get_stylesheet_directory_uri() for themes
+    'version' => '1.0.2', // Set a global version (optional)
+    'deps' => [ 'scripts' => [], 'styles' => [] ]  // Set global dependencies (optional)
 ]);
 
 // Listens to ViteJS dev server and makes adjustment to make HMR work
@@ -115,8 +117,20 @@ Assets::font('SourceSerif4Variable-Italic.ttf.woff2')
 
 // Example of enqueuing the scripts
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_script('main', Assets::js('main'), []);
-    wp_enqueue_style('main', Assets::css('main'), []);
+
+    // You can enqueue & register the tradtional way using global data
+    wp_enqueue_script('my-handle', Assets::js('main'), Assets::deps('scripts'), Assets::version());
+    wp_enqueue_style('my-handle', Assets::css('main'), Assets::deps('styles'), Assets::version());
+    
+    // Or use a more simple method that includes the global deps & version
+    Assets::enqueueStyle('my-handle', 'main');
+    
+    // Which also comes with some handy chained methods
+    Assets::enqueueScript('my-handle', 'main', ['another-dep'])
+        ->useAsync()
+        ->useAttribute('key', 'value')
+        ->localize('object_name', ['data' => 'data'])
+        ->appendInline('<script>console.log("hello");</script>');
 });
 ```
 
@@ -143,6 +157,16 @@ $assets->image('bird-on-black.jpg')
 $assets->svg('instagram') 
 $assets->font('SourceSerif4Variable-Italic.ttf.woff2')
 
+wp_enqueue_script('my-handle', $this->assets->js('main'), $this->assets->deps('scripts'), $this->assets->version());
+wp_enqueue_style('my-handle', $this->assets->css('main'), $this->assets->deps('styles'), $this->assets->version());
+
+$this->assets->enqueueStyle('my-handle', 'main');
+$this->assets->enqueueScript('my-handle', 'main', ['another-dep'])
+    ->useAsync()
+    ->useAttribute('key', 'value')
+    ->localize('object_name', ['data' => 'data'])
+    ->appendInline('<script>console.log("hello");</script>');
+
 // You can also use the facade based on this instance.
 Assets::setFacade($assets);
 Assets::get('css/main.css');
@@ -160,7 +184,8 @@ function assets(): AssetsInterface {
      if(!isset($assets)) {
         $assets = (new AssetsService())->register([
             'dir' => plugin_dir_path(__FILE__), 
-            'url' => plugins_url(\basename(__DIR__)) 
+            'url' => plugins_url(\basename(__DIR__)),
+            'version' => '1.0.0'
         ]);
      }
      
@@ -171,8 +196,8 @@ function assets(): AssetsInterface {
 
 
 add_action('wp_enqueue_scripts', function () {
-    wp_enqueue_script('main', assets()->js('main'), []);
-    wp_enqueue_style('main', assets()->css('main'), []);
+    wp_enqueue_script('my-handle', assets()->js('main'), assets()->deps('scripts'), assets()->version());
+    wp_enqueue_style('my-handle', assets()->css('main'), assets()->deps('styles'), assets()->version());
 });
 ```
 
