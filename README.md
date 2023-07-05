@@ -52,21 +52,20 @@ yarn start
 ```
 
 ## 📦 What's inside
-The idea here is to keep the starter kit simple so additional things can be added for different projects, and so it can be integrated into different theme and 
+The idea is to keep the starter kit simple so additional things can be added for different projects, and so it can be integrated into different theme and 
 plugin structures and maintained through node/composer packages.
 
 ### ViteJS Config
-The config is extending a base config from the `@wp-strap/vite` package through a plugin which is opinionated and configured for WordPress development. This is set up to keep
-the config file minimal and consistent throughout different projects. The configurations can be overwritten. It currently includes the following:
+The config is extending a base config from the `@wp-strap/vite` package through a plugin which is opinionated and configured for WordPress development which can be overwritten. It ensures the following:
 
-- Esbuild for minification which is turned off for `-dev` commands 
-- Esbuild sourcemaps are added when using `-dev` commands
+- Updates/refreshes the dev server (HMR/Hot Module Replacement) when a change is made inside PHP files
+- Encapsulates JS bundles to prevent mix-up of global variables (with other plugins/themes) after minification
+- Collects images, SVG and font files from folders and emits them to make them transformable by plugins
 - Esbuild is configured to make ReactJS code work inside `.js` files instead of the default `.jsx`
-- JS entries are automatically included from first-level folders using fast-glob (e.g., js/my-script.js, blocks/my-block.js).
-- CSS entries are also automatically included, bundled and compiled without importing them into JS files which is more suitable for WordPress projects.
-- It will update/refresh the dev server (HMR/Hot Module Replacement) when a change is made inside PHP files
-- It will encapsulate JS bundles to prevent mix-up of global variables after minification  
-- It will collect images, SVG and font files from folders and emits them to make them transformable by plugins
+- Esbuild for minification which is turned off for `development` mode
+- Esbuild sourcemaps are added for `development` mode
+- JS entries are automatically included from first-level folders inside the `src` folder using fast-glob (e.g., js/my-script.js, blocks/my-block.js).
+- CSS entries are also automatically included in the same way, bundled and compiled without importing them into JS files which is more suitable for WordPress projects.
 - [Vite Plugin Image Optimizer](https://github.com/FatehAK/vite-plugin-image-optimizer) is included that optimizes images and SVG files that we emit
 
 ### PostCSS config
